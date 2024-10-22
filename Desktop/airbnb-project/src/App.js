@@ -3,20 +3,19 @@ import './App.css';
 import Navbar from "./components/navbar"
 import Main from "./components/main"
 import Card from "./components/card"
-
+import Data from "./components/data"
 
 function App() {
+  const dataelements=Data.map((data)=>
+  <Card data={data}/>
+  )
   return (
     <div>
       <Navbar />
       <Main />
-      <Card img= 'card1.jpg'
-            rating ="5.0"
-            reviewCount ="6"
-            country = "India"
-            title = "Life Lessons with SRK"
-            price = "136"
-/>
+      <section className="cards-list">
+                {dataelements}
+            </section>
     </div>
   );
 }

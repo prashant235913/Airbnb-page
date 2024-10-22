@@ -49,14 +49,35 @@ body {
   padding-top: 5px; */
 }
 
+.cards-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+}
+
 .card {
   width: 175px;
   font-size: 12px;
+  flex: 0 0 auto;         /* ADD */
+  display: flex;          /* ADD */
+  flex-direction: column; /* ADD */
+  padding-left: 50px;
+  position: relative;
 }
 
-.card1 {
+.card--image {
   width: 100%;
+  height: 200px; /* Set a fixed height */
+  object-fit: cover; /* Ensures image resizes to fit the box while maintaining aspect ratio */
   border-radius: 9px;
+  margin-bottom: 9px;
+}
+
+/* ADD */
+.card--title {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card--stats {
@@ -64,6 +85,27 @@ body {
   align-items: center;
 }
 
-.star {
+.card--star {
   height: 14px;
+}
+
+/* ADD */
+.card--price {
+  margin-top: auto;
+}
+
+
+.card--badge {
+  position: absolute;
+  top: 6px;
+  left: 56px; /* Adjust left to account for image padding (50px padding + 6px space) */
+  background-color: white;
+  padding: 5px 7px;
+  border-radius: 2px;
+  font-weight: bold;
+  z-index: 1;
+  box-sizing: border-box;
+  max-width: 70px;
+  text-align: center;
+  white-space: nowrap;
 }
