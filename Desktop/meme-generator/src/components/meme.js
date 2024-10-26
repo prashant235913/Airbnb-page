@@ -2,7 +2,30 @@ import React from "react";
 import memesData from "../memesData.js"
 
 export default function Meme(props){
-    const [memeImg , newMemeImg]=React.useState()
+    const [memeImg , newMemeImg]=React.useState(
+        {
+            topText:"" , 
+            bottomText:"" , 
+            randomImg:"",
+        }
+    )
+
+    const [memechit , newMemeData] = React.useState(memesData)
+
+    //Function used to change the meme when button is clicked
+    function showImg(){
+        const memesArray = memechit.data.memes
+        const randomNumber = Math.floor(Math.random() * memesArray.length)
+        // memesArray[randomNumber].url  <-- this line is incomplete!  
+        newMemeImg(function(memeImg){
+            return {
+                ...memeImg , 
+                randomImg: memesArray[randomNumber].url,
+            }
+
+        })
+    }
+
     return(
         <main>
         <div className="form">
@@ -22,17 +45,10 @@ export default function Meme(props){
                     Get a new meme image 🖼
                 </button>
             </div>
-            {memeImg && <img src={memeImg} alt="Random Meme" className="memeImg"/>}
+            {memeImg && <img src={memeImg.randomImg} alt="Random Meme" className="memeImg"/>}
 
         </main>
        
     )
-    function showImg(){
-        const memesArray = memesData.data.memes
-        const randomNumber = Math.floor(Math.random() * memesArray.length)
-        // memesArray[randomNumber].url  <-- this line is incomplete!  
-        newMemeImg(function(memeImg){
-            return memesArray[randomNumber].url
-        })
-    }
+
 }
