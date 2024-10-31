@@ -34,6 +34,8 @@ main{
   display: grid;
   grid-template: 40px 40px / 1fr 1fr;
   gap: 17px;
+  max-width: 500px; /* Set a fixed max-width for the form and button */
+  margin: auto; /* Center the form */ 
 }
 
 .form-input {
@@ -55,12 +57,16 @@ main{
 
 
 .meme--image{
-  width:  82.5rem;
+  width: 100%;       /* Set width to match form's width */
+  max-width: 500px;  /* Same max-width as the form */
+  height: auto;      /* Maintain aspect ratio */
   margin-top: 5%;
 }
 
 .meme {
   position: relative;
+  max-width: 500px; /* Ensure container width matches image width */
+  margin: auto; /* Center the meme */
 }
 
 
@@ -94,5 +100,5 @@ main{
 }
 
 .top {
-  top: 0;
+  top: 5%;
 }

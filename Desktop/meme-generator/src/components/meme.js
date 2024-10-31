@@ -6,25 +6,32 @@ export default function Meme(props){
         {
             topText:"" , 
             bottomText:"" , 
-            randomImg:"",
+            randomImg: "http://i.imgflip.com/1bij.jpg" ,
         }
     )
 
     const [memechit , newMemeData] = React.useState(memesData)
 
-    //Function used to change the meme when button is clicked
-    function showImg(){
-        const memesArray = memechit.data.memes
-        const randomNumber = Math.floor(Math.random() * memesArray.length)
-        // memesArray[randomNumber].url  <-- this line is incomplete!  
-        newMemeImg(function(memeImg){
-            return {
-                ...memeImg , 
-                randomImg: memesArray[randomNumber].url,
-            }
+    // Effects for new image Everytime
+    React.useEffect(()=> {
+     fetch("https://api.imgflip.com/get_memes")
+    .then(res => res.json())
+    .then(data => newMemeData(data.data.memes))
+    } , []
+    )
 
-        })
+    //Function used to change the meme when button is clicked
+    function showImg() {
+        // if (memechit.length > 0) { // Ensure memechit has been populated
+            const randomNumber = Math.floor(Math.random() * memechit.length)
+            const newImageUrl = memechit[randomNumber].url
+            newMemeImg((prevMeme) => ({
+                ...prevMeme,
+                randomImg: newImageUrl
+            }))
+        
     }
+    
 
     function handleChange(event){
         const {name , value} = event.target
