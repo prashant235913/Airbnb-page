@@ -26,6 +26,18 @@ export default function Meme(props){
         })
     }
 
+    function handleChange(event){
+        const {name , value} = event.target
+        newMemeImg(function(memeImg){
+            return (
+                {
+                    ...memeImg , 
+                    [name]:value,
+                }
+            )
+        })
+    }
+
     return(
         <main>
         <div className="form">
@@ -33,11 +45,17 @@ export default function Meme(props){
                         type="text"
                     placeholder="Top text"
                     className="form--input"
+                    name="topText"
+                    value={memeImg.topText}
+                    onChange={handleChange}
                 />
                 <input 
                     type="text"
                     placeholder="Bottom text"
                     className="form-input"
+                    name="bottomText"
+                    value={memeImg.bottomText}
+                    onChange={handleChange}
                 />
                 <button onClick={showImg}
                     className="form-button"
@@ -45,7 +63,11 @@ export default function Meme(props){
                     Get a new meme image 🖼
                 </button>
             </div>
-            {memeImg && <img src={memeImg.randomImg} alt="Random Meme" className="memeImg"/>}
+            <div className="meme">
+                <img src={memeImg.randomImg} className="meme--image" />
+                <h2 className="meme--text top">{memeImg.topText}</h2>
+                <h2 className="meme--text bottom">{memeImg.bottomText}</h2>
+            </div>
 
         </main>
        
